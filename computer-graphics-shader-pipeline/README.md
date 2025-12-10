@@ -25,6 +25,14 @@ Music was added in main.cpp
 A slow rotation is added in main.cpp
 Toggles for switching the background and music are implemented in main.cpp
 
+List of features:
+sky dome
+lens effect
+texture usage
+music
+animation
+toggles
+
 Acknowledgements:
 
 Texture stuff:
