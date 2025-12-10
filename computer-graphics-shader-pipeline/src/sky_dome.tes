@@ -1,0 +1,31 @@
+layout(triangles, equal_spacing, cw) in;
+
+uniform mat4 view;
+uniform mat4 proj;
+uniform float animation_seconds;
+uniform bool is_moon;
+
+in vec4 pos_es_in[];
+
+out vec4 pos_fs_in;
+out vec4 view_pos_fs_in;
+out vec3 normal_fs_in;
+out vec3 sphere_fs_in;
+
+void main() {
+
+  vec4 p = interpolate(gl_TessCoord, pos_es_in[0], pos_es_in[1], pos_es_in[2]);
+  vec3 dir = normalize(p.xyz);
+
+  // sky dome
+  float radius = 30.0;
+  vec3 center = vec3(0.0);
+  vec3 world_pos = center + dir * radius;
+
+  sphere_fs_in = dir;
+  normal_fs_in = -dir;
+
+  view_pos_fs_in = view * vec4(world_pos, 1.0);
+  pos_fs_in = proj * view_pos_fs_in;
+  gl_Position = pos_fs_in;
+}
